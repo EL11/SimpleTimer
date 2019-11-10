@@ -112,7 +112,7 @@ void recordPot(int pot_curr){
      Serial.println("Countdown:" + String(cd_factor));
    
      //--CHECKS
-     //Check is pot_past has being recorded for the first time
+     //Check if pot_past has being recorded for the first time
      if(pot_past==1){
         pot_past=pot_curr;
      }
@@ -192,9 +192,9 @@ void handleDisp(){
 void loop() {
     garbageFilter();
     potVal = analogRead(pot);
-    UOM="PAUSA";
-    if(potVal!=0 && potVal!=1){
-       UOM="SECONDI";
+    UOM="PAUSE"; //Pause timer at potentiometer 0 value
+    if(potVal!=0 && potVal!=1){ //Execute program after potentiometer value 2
+       UOM="SECONDS";
        potMap=map(potVal,2,900,1,100); //Map raw potentiometer values to smoother virtual values
        recordPot(potMap); 
        Serial.println(setTime);
